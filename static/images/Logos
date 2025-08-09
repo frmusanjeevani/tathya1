@@ -1,0 +1,2 @@
+st.image("static/images/tathya.png", width=120)      # Tathya logo
+st.image("static/images/abcl_logo.jpg", width=120)   # ABCL logo

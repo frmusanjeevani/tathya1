@@ -1,0 +1,244 @@
+import pandas as pd
+import streamlit as st
+from datetime import datetime
+
+def create_workflow_excel():
+    """Create comprehensive Excel file with all workflow analysis"""
+    
+    # Create Excel writer object
+    excel_filename = f"Tathya_Case_Management_Workflow_Analysis_{datetime.now().strftime('%Y%m%d_%H%M%S')}.xlsx"
+    
+    with pd.ExcelWriter(excel_filename, engine='openpyxl') as writer:
+        
+        # Sheet 1: Case Entry/Registration Module
+        case_entry_data = [
+            ["Basic Case Info", "Case ID", "Text Input (Auto-generated)", "Yes", "CASE20250728CE806A format", "Auto-generated", "Unique case identifier"],
+            ["Basic Case Info", "Category", "Selectbox", "Yes", "Text selection", "Lending, Non-Lending", "Case category classification"],
+            ["Basic Case Info", "Referred By", "Selectbox", "Yes", "Text selection", "Branch Manager, Sales Manager, Risk Team, Legal Team, Customer Service, Whistleblower, Third-Party Agency, Internal Audit, Automated Flag, Customer Direct", "Source of case referral"],
+            ["Basic Case Info", "Type of Case", "Selectbox", "Yes", "Text selection", "Fraud Suspect, Customer Complaint, Whistleblower Input, Internal Escalation, Legal Referral, Negative Verification, High-Risk Profile, Discrepant Documents, SAR, Repeat Offender, Misuse of Credentials, Identity Mismatch, Document Tampering, Branch Escalation, Third-Party Alert, Social Media Flagged, Call Center Escalation, Field Investigation Required, Deviation Approval Request, Others", "Specific case type classification"],
+            ["Basic Case Info", "LAN", "Text Input", "Yes", "Alpha-numeric", "Free text", "Loan Account Number"],
+            ["Basic Case Info", "Product", "Selectbox", "Yes", "Database dropdown", "Database values", "Product classification"],
+            ["Basic Case Info", "Region", "Selectbox", "Yes", "Database dropdown", "Database values", "Geographic region"],
+            ["Basic Case Info", "Case Date", "Date Input", "Yes", "Max: Today", "Date picker", "Case creation date"],
+            
+            ["Customer Demographics", "Customer Name", "Text Input", "Yes", "Text validation", "Free text", "Full customer name"],
+            ["Customer Demographics", "Date of Birth", "Date Input", "Yes", "Max: Today", "Date picker", "Customer birth date"],
+            ["Customer Demographics", "PAN", "Text Input", "Yes", "10 chars, alphanumeric", "ABCDE1234F format", "PAN card number"],
+            ["Customer Demographics", "Mobile Number", "Text Input", "Yes", "10 digits", "9876543210 format", "Contact number"],
+            ["Customer Demographics", "Email ID", "Text Input", "Yes", "Email format", "Email validation", "Email address"],
+            ["Customer Demographics", "Aadhaar Number", "Text Input", "No", "12 digits, auto-masked", "XXXX-XXXX-1234 display", "Identity number (masked display)"],
+            ["Customer Demographics", "Relationship Status", "Selectbox", "No", "Text selection", "Single, Married, Divorced, Widowed, Separated", "Marital status"],
+            ["Customer Demographics", "Complete Address", "Text Area", "No", "Multi-line text", "Free text", "Full address with pin code"],
+            
+            ["Financial Profile", "Occupation", "Selectbox", "No", "Text selection", "Salaried Employee, Self Employed Business, Self Employed Professional, Student, Retired, Housewife, Unemployed, Others", "Customer occupation"],
+            ["Financial Profile", "Monthly Income Range", "Selectbox", "No", "Text selection", "Below ₹25,000, ₹25,000 - ₹50,000, ₹50,000 - ₹1,00,000, ₹1,00,000 - ₹2,00,000, ₹2,00,000 - ₹5,00,000, Above ₹5,00,000", "Income classification"],
+            ["Financial Profile", "CIBIL Score", "Number Input", "No", "300-900 range", "300-900", "Credit score"],
+            
+            ["Loan Information", "Branch/Location", "Text Input", "Yes", "Text validation", "Free text", "Branch name"],
+            ["Loan Information", "Loan Amount", "Number Input", "Yes", "Min: 0, Currency format", "Decimal values", "Principal amount"],
+            ["Loan Information", "Disbursement Date", "Date Input", "Yes", "Max: Today", "Date picker", "Loan disbursement date"],
+            
+            ["Case Description", "Case Description", "Text Area", "Yes", "Multi-line text", "Free text", "Detailed case description"],
+            
+            ["Documents", "PAN Card Image", "File Upload", "No", "JPG, JPEG, PNG, PDF", "File upload", "PAN card image with preview"],
+            ["Documents", "Aadhaar Card Image", "File Upload", "No", "JPG, JPEG, PNG, PDF", "File upload", "Aadhaar card image with preview"],
+            ["Documents", "Customer Photo", "File Upload", "No", "JPG, JPEG, PNG", "File upload", "Customer photo with preview"],
+            ["Documents", "Bulk Identity Documents", "File Upload (Multiple)", "No", "JPG, JPEG, PNG, PDF", "Multiple files", "All identity documents at once"],
+            ["Documents", "Supporting Documents", "File Upload (Multiple)", "No", "PDF, DOC, DOCX, XLS, XLSX, JPG, JPEG, PNG", "Multiple files", "All supporting documents"]
+        ]
+        
+        df_case_entry = pd.DataFrame(case_entry_data, columns=["Section", "Field Name", "Field Type", "Required", "Validation", "Options/Values", "Description"])
+        df_case_entry.to_excel(writer, sheet_name='1_Case_Entry_Registration', index=False)
+        
+        # Sheet 2: Case Allocation Module
+        case_allocation_data = [
+            ["Case Assignment", "Case Selection", "Dropdown", "Yes", "Database cases", "Submitted cases", "Select from submitted cases"],
+            ["Case Assignment", "Investigation Type", "Radio Button", "Yes", "Text selection", "Agency, Regional", "Investigation method choice"],
+            ["Case Assignment", "Assigned Investigator", "Selectbox", "Yes", "Database users", "Active investigators", "Investigator assignment"],
+            ["Case Assignment", "Priority Level", "Selectbox", "Yes", "Text selection", "High, Medium, Low", "Case priority"],
+            ["Case Assignment", "Expected Completion", "Date Input", "Yes", "Future date", "Date picker", "Target completion date"],
+            ["Allocation Notes", "Allocation Notes", "Text Area", "Yes", "Multi-line text", "Free text", "Assignment instructions"],
+            ["Allocation Notes", "Special Instructions", "Text Area", "No", "Multi-line text", "Free text", "Additional guidance"]
+        ]
+        
+        df_case_allocation = pd.DataFrame(case_allocation_data, columns=["Section", "Field Name", "Field Type", "Required", "Validation", "Options/Values", "Description"])
+        df_case_allocation.to_excel(writer, sheet_name='2_Case_Allocation', index=False)
+        
+        # Sheet 3: Investigation Module
+        investigation_data = [
+            ["Investigation Details", "Investigation Method", "Selectbox", "Yes", "Text selection", "8 predefined options", "Investigation approach"],
+            ["Investigation Details", "Field Visit Conducted", "Radio Button", "Yes", "Boolean", "Yes, No", "Physical verification"],
+            ["Investigation Details", "Customer Contacted", "Radio Button", "Yes", "Boolean", "Yes, No", "Direct contact status"],
+            ["Investigation Details", "Documents Verified", "Radio Button", "Yes", "Boolean", "Yes, No", "Document verification"],
+            ["Investigation Details", "Inconsistencies Found", "Radio Button", "Yes", "Boolean", "Yes, No", "Discrepancy identification"],
+            
+            ["Document Verification", "PAN Verification", "Selectbox", "Yes", "Text selection", "Verified, Not Verified, Discrepancy Found", "PAN verification status"],
+            ["Document Verification", "Aadhaar Verification", "Selectbox", "Yes", "Text selection", "Verified, Not Verified, Discrepancy Found", "Aadhaar verification status"],
+            ["Document Verification", "Bank Statement Verification", "Selectbox", "Yes", "Text selection", "Verified, Not Verified, Discrepancy Found", "Bank statement verification"],
+            ["Document Verification", "Address Verification", "Selectbox", "Yes", "Text selection", "Verified, Not Verified, Discrepancy Found", "Address verification status"],
+            ["Document Verification", "Employment Verification", "Selectbox", "Yes", "Text selection", "Verified, Not Verified, Unable to Verify", "Employment verification"],
+            ["Document Verification", "Mobile Verification", "Selectbox", "Yes", "Text selection", "Verified, Not Verified, Invalid", "Mobile verification"],
+            
+            ["Field Verification", "CIBIL Review", "Selectbox", "Yes", "Text selection", "Completed, Pending, Discrepancy Found", "CIBIL verification status"],
+            ["Field Verification", "Form 26AS Review", "Selectbox", "Yes", "Text selection", "Completed, Pending, Discrepancy Found", "Tax verification status"],
+            
+            ["Investigation Summary", "Modus Operandi Summary", "Text Area", "Yes", "Multi-line text", "Free text", "Fraud technique description"],
+            ["Investigation Summary", "Root Cause Analysis", "Text Area", "Yes", "Multi-line text", "Free text", "Key lapses identification"],
+            ["Investigation Summary", "Investigation Findings", "Text Area", "Yes", "Multi-line text", "Free text", "Detailed findings"],
+            ["Investigation Summary", "Risk Assessment", "Selectbox", "Yes", "Text selection", "Low, Medium, High, Critical", "Risk evaluation"],
+            ["Investigation Summary", "Fraud Indicators", "Text Area", "No", "Multi-line text", "Free text", "Suspicious indicators"],
+            ["Investigation Summary", "Recommended Action", "Selectbox", "Yes", "Text selection", "8 predefined options", "Next steps recommendation"],
+            
+            ["Recommended Actions", "Business Team Action", "Text Input", "No", "Text validation", "Free text", "Business team recommendation"],
+            ["Recommended Actions", "RCU/Credit Action", "Text Input", "No", "Text validation", "Free text", "RCU team recommendation"],
+            ["Recommended Actions", "ORM/Policy Action", "Text Input", "No", "Text validation", "Free text", "ORM team recommendation"],
+            ["Recommended Actions", "Compliance Action", "Text Input", "No", "Text validation", "Free text", "Compliance recommendation"],
+            ["Recommended Actions", "IT Action", "Text Input", "No", "Text validation", "Free text", "IT team recommendation"],
+            ["Recommended Actions", "Legal Action", "Text Input", "No", "Text validation", "Free text", "Legal team recommendation"],
+            
+            ["Investigation Status", "Investigation Status", "Selectbox", "Yes", "Text selection", "In Progress, Completed, Requires Review, Escalated", "Current status"],
+            ["Investigation Status", "Investigation Comments", "Text Area", "Yes", "Multi-line text", "Free text", "Investigation summary"],
+            ["Investigation Status", "Investigation Documents", "File Upload (Multiple)", "No", "PDF, JPG, JPEG, PNG, DOC, DOCX", "Multiple files", "Investigation evidence"]
+        ]
+        
+        df_investigation = pd.DataFrame(investigation_data, columns=["Section", "Field Name", "Field Type", "Required", "Validation", "Options/Values", "Description"])
+        df_investigation.to_excel(writer, sheet_name='3_Investigation_Module', index=False)
+        
+        # Sheet 4: Primary Review Module
+        primary_review_data = [
+            ["Review Assessment", "Review Status", "Radio Button", "Yes", "Text selection", "Approve, Reject, Request Info", "Review decision"],
+            ["Review Assessment", "Review Comments", "Text Area", "Yes", "Multi-line text", "Free text", "Review feedback"],
+            ["Review Assessment", "Quality Score", "Number Input", "No", "1-10 scale", "1-10", "Investigation quality rating"],
+            ["Additional Review", "Compliance Check", "Checkbox", "No", "Boolean", "Checked/Unchecked", "Compliance verification"],
+            ["Additional Review", "Policy Adherence", "Checkbox", "No", "Boolean", "Checked/Unchecked", "Policy compliance check"],
+            ["Additional Review", "Documentation Complete", "Checkbox", "No", "Boolean", "Checked/Unchecked", "Documentation completeness"]
+        ]
+        
+        df_primary_review = pd.DataFrame(primary_review_data, columns=["Section", "Field Name", "Field Type", "Required", "Validation", "Options/Values", "Description"])
+        df_primary_review.to_excel(writer, sheet_name='4_Primary_Review', index=False)
+        
+        # Sheet 5: Final Review Module
+        final_review_data = [
+            ["Final Review Summary", "Final Review Summary", "Text Area", "Yes", "Multi-line text", "Free text", "Comprehensive case summary"],
+            ["Final Review Summary", "AI Generated Summary", "Text Area (Read-only)", "No", "AI-generated", "AI content", "AI-powered case analysis"],
+            ["Final Review Summary", "Legal Action Required", "Radio Button", "Yes", "Boolean", "Yes, No", "Legal processing requirement"],
+            ["Final Review Summary", "Actioner Required", "Radio Button", "Yes", "Boolean", "Yes, No", "Closure action requirement"],
+            ["AI Enhancement", "AI Assist Button", "Button", "No", "N/A", "Click action", "Generate AI summary"],
+            ["AI Enhancement", "Accept AI", "Button", "No", "N/A", "Click action", "Accept AI suggestion"],
+            ["AI Enhancement", "Regenerate AI", "Button", "No", "N/A", "Click action", "Generate new AI summary"],
+            ["AI Enhancement", "Dismiss AI", "Button", "No", "N/A", "Click action", "Reject AI suggestion"]
+        ]
+        
+        df_final_review = pd.DataFrame(final_review_data, columns=["Section", "Field Name", "Field Type", "Required", "Validation", "Options/Values", "Description"])
+        df_final_review.to_excel(writer, sheet_name='5_Final_Review', index=False)
+        
+        # Sheet 6: Approver Modules
+        approver_data = [
+            ["Approver 1", "Approval Status", "Radio Button", "Yes", "Text selection", "Approve, Reject, Return", "Approval decision"],
+            ["Approver 1", "Approval Comments", "Text Area", "Yes", "Multi-line text", "Free text", "Approval feedback"],
+            ["Approver 1", "Conditions/Remarks", "Text Area", "No", "Multi-line text", "Free text", "Additional conditions"],
+            ["Approver 2", "Final Approval Status", "Radio Button", "Yes", "Text selection", "Approve, Reject, Return", "Final approval decision"],
+            ["Approver 2", "Final Approval Comments", "Text Area", "Yes", "Multi-line text", "Free text", "Final approval feedback"],
+            ["Approver 2", "Executive Summary", "Text Area", "No", "Multi-line text", "Free text", "Executive level summary"]
+        ]
+        
+        df_approver = pd.DataFrame(approver_data, columns=["Section", "Field Name", "Field Type", "Required", "Validation", "Options/Values", "Description"])
+        df_approver.to_excel(writer, sheet_name='6_Approver_Modules', index=False)
+        
+        # Sheet 7: Legal Panel Module
+        legal_data = [
+            ["Legal Review", "Legal Review Status", "Selectbox", "Yes", "Text selection", "Multiple options", "Legal decision"],
+            ["Legal Review", "Legal Comments", "Text Area", "Yes", "Multi-line text", "Free text", "Legal analysis"],
+            ["Legal Review", "Legal Action Type", "Selectbox", "Yes", "Text selection", "SCN, Reasoned Order, Legal Opinion, Recovery Notice", "Type of legal action"],
+            ["Document Generation", "Show Cause Notice", "Text Area", "Conditional", "Multi-line text", "Free text", "SCN content"],
+            ["Document Generation", "Reasoned Order", "Text Area", "Conditional", "Multi-line text", "Free text", "Order content"],
+            ["Document Generation", "Legal Opinion", "Text Area", "Conditional", "Multi-line text", "Free text", "Opinion content"],
+            ["Document Generation", "Recovery Notice", "Text Area", "Conditional", "Multi-line text", "Free text", "Notice content"]
+        ]
+        
+        df_legal = pd.DataFrame(legal_data, columns=["Section", "Field Name", "Field Type", "Required", "Validation", "Options/Values", "Description"])
+        df_legal.to_excel(writer, sheet_name='7_Legal_Panel', index=False)
+        
+        # Sheet 8: Closure/Actioner Module
+        closure_data = [
+            ["Closure Decision", "Closure Type", "Radio Button", "Yes", "Text selection", "Fraud, Non-Fraud", "Case classification"],
+            ["Closure Decision", "Closure Action", "Selectbox", "Yes", "Text selection", "Multiple options", "Closure method"],
+            ["Closure Decision", "Recovery Amount", "Number Input", "Conditional", "Currency format", "Decimal values", "Amount recovered"],
+            ["Closure Decision", "Closure Reason", "Text Area", "Yes", "Multi-line text", "Free text", "Closure justification"],
+            ["Fraud Classification", "Fraud Type", "Selectbox", "Yes (if Fraud)", "Text selection", "Multiple options", "Type of fraud"],
+            ["Fraud Classification", "Fraud Amount", "Number Input", "Yes (if Fraud)", "Currency format", "Decimal values", "Fraud value"],
+            ["Fraud Classification", "Fraud Status", "Selectbox", "Yes (if Fraud)", "Text selection", "Confirmed, Suspected", "Fraud confirmation"],
+            ["Closure Details", "Final Action", "Selectbox", "Yes", "Text selection", "8+ predefined options", "Final closure action"],
+            ["Closure Details", "Settlement Details", "Text Area", "Conditional", "Multi-line text", "Free text", "Settlement information"],
+            ["Closure Details", "Write-off Details", "Text Area", "Conditional", "Multi-line text", "Free text", "Write-off justification"],
+            ["Closure Details", "Transfer Details", "Text Area", "Conditional", "Multi-line text", "Free text", "Transfer information"]
+        ]
+        
+        df_closure = pd.DataFrame(closure_data, columns=["Section", "Field Name", "Field Type", "Required", "Validation", "Options/Values", "Description"])
+        df_closure.to_excel(writer, sheet_name='8_Closure_Actioner', index=False)
+        
+        # Sheet 9: Database Tables Summary
+        database_data = [
+            ["cases", "Main case data", "45+ fields including status tracking, demographics, loan info", "High"],
+            ["users", "User management", "username, role, team, status", "Medium"],
+            ["case_comments", "Comment tracking", "case_id, comment, created_by, timestamp", "High"],
+            ["case_documents", "Document management", "case_id, filename, file_path, upload_type", "High"],
+            ["investigation_details", "Investigation data", "case_id, verification statuses, findings", "Medium"],
+            ["audit_logs", "Audit trail", "case_id, action, performed_by, timestamp", "Very High"],
+            ["case_assignments", "Case assignments", "case_id, assignee, assignment_type", "Medium"],
+            ["agency_responses", "External responses", "case_id, agency_name, response_data", "Medium"]
+        ]
+        
+        df_database = pd.DataFrame(database_data, columns=["Table Name", "Primary Purpose", "Key Fields", "Record Count Expected"])
+        df_database.to_excel(writer, sheet_name='9_Database_Tables', index=False)
+        
+        # Sheet 10: File Formats & Status Transitions
+        file_formats_data = [
+            ["Identity Documents", "JPG, JPEG, PNG, PDF", "PAN, Aadhaar, Customer Photo", "Yes"],
+            ["Supporting Documents", "PDF, DOC, DOCX, XLS, XLSX, JPG, JPEG, PNG", "All supporting evidence", "Partial"],
+            ["Investigation Documents", "PDF, JPG, JPEG, PNG, DOC, DOCX", "Investigation evidence", "Yes"],
+            ["Legal Documents", "PDF (Generated)", "SCN, Orders, Notices", "Yes (Download)"]
+        ]
+        
+        df_file_formats = pd.DataFrame(file_formats_data, columns=["Document Type", "Supported Formats", "Usage Context", "Preview Available"])
+        df_file_formats.to_excel(writer, sheet_name='10_File_Formats', index=False)
+        
+        # Sheet 11: Workflow Status Transitions
+        status_transitions_data = [
+            ["Draft", "Submitted", "Submit Case", "Initiator/Investigator"],
+            ["Submitted", "Allocated", "Allocate Case", "Investigator"],
+            ["Allocated", "Under Investigation", "Start Investigation", "Investigator"],
+            ["Under Investigation", "Primary Review", "Complete Investigation", "Investigator"],
+            ["Primary Review", "Approved", "Approve Case", "Reviewer"],
+            ["Approved", "Second Approval", "First Approval", "Approver 1"],
+            ["Second Approval", "Final Review", "Second Approval", "Approver 2"],
+            ["Final Review", "Legal Review", "Send to Legal", "Reviewer"],
+            ["Legal Review", "Closed", "Complete Legal/Actioner", "Legal/Actioner"]
+        ]
+        
+        df_status_transitions = pd.DataFrame(status_transitions_data, columns=["Current Status", "Next Status", "Trigger Action", "User Role"])
+        df_status_transitions.to_excel(writer, sheet_name='11_Status_Transitions', index=False)
+        
+        # Sheet 12: Summary Statistics
+        summary_data = [
+            ["Total Fields Analyzed", "150+"],
+            ["Total Workflow Stages", "9"],
+            ["Total Document Types", "8+"],
+            ["Total Database Tables", "8"],
+            ["Analysis Date", "January 2025"],
+            ["System Name", "Tathya Case Management System"],
+            ["Primary Technology", "Streamlit + SQLite + Google Gemini AI"],
+            ["Document Formats Supported", "PDF, DOC, DOCX, XLS, XLSX, JPG, JPEG, PNG"],
+            ["User Roles", "Initiator, Investigator, Reviewer, Approver, Legal, Actioner, Admin"],
+            ["AI Integration", "Google Gemini for analysis, suggestions, and document generation"]
+        ]
+        
+        df_summary = pd.DataFrame(summary_data, columns=["Metric", "Value"])
+        df_summary.to_excel(writer, sheet_name='12_Summary_Statistics', index=False)
+    
+    return excel_filename
+
+# Generate Excel file
+if __name__ == "__main__":
+    filename = create_workflow_excel()
+    print(f"Excel file created: {filename}")

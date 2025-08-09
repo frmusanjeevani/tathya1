@@ -1,0 +1,73 @@
+Please create a fully functional, dedicated web page module named "Internal Fraud Case Management" that meets the following specifications:
+
+1. Purpose & Scope
+This module is a separate, standalone page embedded on the login screen alongside "Investigation" and "Tatya Lab."
+
+It is used exclusively for capturing, processing, and closing internal and employee fraud cases.
+
+It should NOT integrate or reflect data anywhere else in the existing Investigation module or other systems.
+
+2. Structured Fields & Process Flow
+The form must be logically divided into six sections reflecting the case life cycle:
+
+Section 1 – Case Initiation
+Case ID: Auto-generated, unique, read-only
+
+Type of Case: Dropdown with options: Internal Fraud / Employee Fraud (mandatory)
+
+Date of Detection: Date picker, no future dates allowed (mandatory)
+
+Reported By: Dropdown (HR / FRMU / Other) (mandatory)
+
+Reporting Channel: Dropdown (Email / Phone / Whistleblower / Other) (mandatory)
+
+Brief Description of Incident: Text area, max 1000 characters (mandatory)
+
+Supporting Documents: Multiple file upload; mandatory if case is not anonymous
+
+Section 2 – Case Allocation
+Allocated To: Dropdown of Investigator names; mandatory if Status = "Allocated"
+
+Allocation Date: Auto-set current date on allocation, read-only
+
+Allocation Remarks: Text area; mandatory if Status = "Allocated"
+
+Section 3 – Investigation
+Investigation Start Date: Date picker (optional)
+
+Investigation Summary: Text area, max 2000 chars; mandatory if Status = "Investigation In Progress"
+
+Evidence Collected: Multiple file upload (optional)
+
+Preliminary Findings: Text area, max 1000 chars; mandatory if Status = "Investigation In Progress"
+
+Section 4 – Review & Approval
+Final Reviewer Name: Dropdown (Reviewer list) (optional)
+
+Reviewer Comments: Text area (optional)
+
+Approver 1 Name: Dropdown (mandatory if Investigation completed)
+
+Approver 1 Decision: Dropdown (Approve / Reject / Send Back) (mandatory if Investigation completed)
+
+Approver 2 Name: Dropdown (mandatory if Investigation completed)
+
+Approver 2 Decision: Dropdown (Approve / Reject / Send Back) (mandatory if Investigation completed)
+
+Section 5 – Code of Conduct
+Breach of Code of Conduct: Radio buttons (Yes / No) (mandatory)
+
+Code of Conduct Reference Clause: Text area; mandatory if Breach = Yes
+
+Section 6 – Closure Process
+Primary Closure Remarks: Text area (optional)
+
+HR Review & Action: Dropdown (Warning / Termination / Suspension / Other) (optional)
+
+Employee Show Cause Notice Date: Date picker (optional)
+
+Committee Review Remarks: Text area (optional)
+
+Final Closure Date: Date picker, mandatory if Status = "Closure in Progress"
+
+Final Closure Remarks: Text area, mandatory if Status = "Closure in Progress"

@@ -1,0 +1,111 @@
+Add “Regulatory Governance Suite” Module
+1️⃣ Login Page Update
+Do not modify the existing structure of the login page.
+
+Add one additional radio button alongside existing modules ("Investigation" and "Tathya Lab").
+
+Label: 📘 Regulatory Governance Suite
+
+On selection, it should route the user to a new standalone module page titled Regulatory Governance Suite, following the same navigation and layout pattern as other modules.
+
+2️⃣ Regulatory Governance Suite – Page Layout
+Design and build the page using the same UI framework, grid, and component system used in "Investigation" and "Tathya Verification Lab".
+
+🧭 Left Navigation Panel (Sidebar)
+Add the following icon-based quick links:
+
+📘 Regulatory Analyzer (Main)
+
+📄 Policy Library
+
+⚙️ Compliance Tasks
+
+📝 SOP Templates
+
+📅 Milestones
+
+📎 Docs & Audit Trail
+
+📌 Right Main Content Panel – Analyzer Section
+✅ Document Repository Functionality
+Provide an option to upload documents (PDF, Word, Excel).
+
+Each uploaded document should open or expand into the following analysis structure (form-based or collapsible template below the file):
+
+📘 Regulatory Advisory Analyzer Template
+📘 1. Advisory Details
+Advisory Title
+
+Reference No. / Issuing Body
+
+Date Issued
+
+Effective Date / Deadline
+
+🎯 2. Purpose & Context
+Objective (brief summary)
+
+Key Issues Addressed (bullet points)
+
+⚙️ 3. Action Required / Process to Follow
+Include a table:
+| Step No. | Action Item | Owner Department | Supporting Teams | Timeline | Status |
+
+🧑‍🤝‍🧑 4. Stakeholders Involved
+Primary Owners
+
+Secondary Contributors
+
+External Liaisons (if any)
+
+🧾 5. Impact Areas
+Multi-select tags or checkboxes:
+
+Policy Changes
+
+SOP / Process Realignment
+
+Customer Communication
+
+Product Changes
+
+Tech Platform Changes
+
+MIS / Reporting Adjustments
+
+📝 6. Documentation Required
+Checklist display:
+
+Updated Policy
+
+Revised SOP
+
+Audit Trails
+
+Evidence of Implementation
+
+Customer Communication
+
+📅 7. Timelines & Milestones
+Milestone tracking table:
+| Milestone | Owner | Deadline | Status |
+
+✅ 8. Key Takeaways
+Summary of regulatory change
+
+Implementation challenges
+
+Audit risks
+
+Internal tracking link
+
+🌐 9. Reference Documents
+Provide hyperlinks to:
+
+Regulatory circulars
+
+Public notices
+
+Internal documentation
+
+Live dashboards

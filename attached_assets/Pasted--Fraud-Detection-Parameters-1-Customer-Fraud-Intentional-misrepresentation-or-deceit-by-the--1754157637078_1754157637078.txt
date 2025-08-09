@@ -1,0 +1,48 @@
+🔍 Fraud Detection Parameters
+🔹 1. Customer Fraud
+Intentional misrepresentation or deceit by the customer
+
+High-Critical Parameters:
+
+✅ Face Dedupe: Same face used across multiple customer IDs or applications
+✅ Fake or Tampered KYC Documents
+✅ Mismatch: Selfie vs KYC Document Photo
+✅ Mobile Number or Email ID Reuse (across different applicants)
+✅ Address Mismatch or Non-verifiable Address
+✅ Declared Income vs. Lifestyle Mismatch
+✅ Device Reuse Across Applicants
+✅ Suspicious Application Patterns (e.g., high volume from one location/device)
+🔹 2. Third-Party Fraud
+Fraud where someone other than the applicant is misusing identity or data
+
+High-Critical Parameters:
+
+✅ Use of VPN / Proxy / Emulators
+✅ Device Fingerprint Linked to Multiple Unrelated Applicants
+✅ Synthetic Identity Indicators (AI-generated or edited images)
+✅ Non-Contactable Numbers / Invalid References
+✅ Mismatch in IP Geo vs. Address Location
+✅ Suspicious Network Patterns (e.g., same face + different names)
+✅ Mobile Porting or SIM Swap Detection
+🔹 3. Employee Fraud
+Internal manipulation or bypassing of fraud controls
+
+High-Critical Parameters:
+
+✅ Data Leakage: Customer PII (PAN, Aadhaar, mobile) accessed abnormally or exported
+✅ Frequent Manual Overrides or Skipped Validation Logs
+✅ Backdated Data Entry or re-uploaded KYC post-approval
+✅ Multiple High-Risk Applications Handled by Same Employee
+✅ Login Audit Trail Abnormalities (late night, shared system, remote IPs)
+✅ Linkage Between Employee Code and Repeated Fraud/DQ
+🔹 4. DSA / Sourcing Channel Fraud
+Misrepresentation or forgery done by the external sourcing partner
+
+High-Critical Parameters:
+
+✅ Face Dedupe Across Applications from Same DSA Code
+✅ Document Reuse Across Applicants
+✅ High Rejection or Fraud Tagging % from Specific DSA
+✅ Geo Mismatch in Application Submission
+✅ Untraceable References Provided by Channel
+✅ Suspicious Upload Patterns (e.g., all documents uploaded in 2 mins, suggesting pre-filled profiles)

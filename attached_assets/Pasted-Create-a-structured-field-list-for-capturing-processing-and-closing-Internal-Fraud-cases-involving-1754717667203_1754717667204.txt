@@ -1,0 +1,136 @@
+Create a structured field list for capturing, processing, and closing Internal Fraud cases involving employees. Fields should be logically grouped according to process flow and role responsibilities. Apply field restrictions, conditions for mandatory inputs, and define role-based edit/view rights. This should be a dedicated, separate page that is not reflected anywhere else inside Investigation for Tatya Lab, and it should be embedded on the login page alongside Investigation and Tatya Lab as an independent module.
+
+Section 1 – Case Initiation
+Case ID (auto-generated)
+
+Type of Case (Dropdown: Internal Fraud / Employee Fraud)
+
+Date of Detection
+
+Reported By (Dropdown: HR / FRMU / Other)
+
+Reporting Channel (Email, Phone, Whistleblower, Other)
+
+Brief Description of Incident (Text area)
+
+Supporting Documents (Attachment upload)
+Mandatory if: Case is not initiated anonymously.
+
+Section 2 – Case Allocation
+Allocated To (Dropdown: Investigator Name)
+
+Allocation Date (Auto-date)
+
+Allocation Remarks (Optional)
+Mandatory if: Status = "Allocated"
+
+Section 3 – Investigation
+Investigation Start Date
+
+Investigation Summary (Text area)
+
+Evidence Collected (Attachment upload)
+
+Preliminary Findings
+Mandatory if: Status = "Investigation In Progress"
+
+Section 4 – Review & Approval
+Final Reviewer Name (Dropdown: Reviewer list)
+
+Reviewer Comments
+
+Approver 1 Name
+
+Approver 1 Decision (Approve / Reject / Send Back)
+
+Approver 2 Name
+
+Approver 2 Decision (Approve / Reject / Send Back)
+Mandatory if: Investigation completed
+
+Section 5 – Code of Conduct
+Breach of Code of Conduct (Yes / No)
+
+Code of Conduct Reference Clause
+Mandatory if: Breach = "Yes"
+
+Section 6 – Closure Process
+Primary Closure Remarks
+
+HR Review & Action (Dropdown: Warning / Termination / Suspension / Other)
+
+Employee Show Cause Notice (SCN) Date
+
+Committee Review Remarks
+
+Final Closure Date
+
+Final Closure Remarks
+Mandatory if: Status = "Closure in Progress"
+
+Role-based Data Entry Access
+HR / FRMU → Can initiate case, upload documents, and allocate
+
+Investigator → Can edit Investigation section only
+
+Final Reviewer → Can edit Review & Approval section
+
+Approvers → Decision fields only
+
+System → Auto-generate dates and case ID
+
+Page Redesign Instructions – Blue Theme
+Goal: Redesign only this Internal Fraud page using a standardized and clean blue theme design, without disrupting the existing layout, field alignment, functional UI flow, or embedded positioning.
+
+Color & Style Rules
+Primary Blue: #1976d2
+
+Secondary Blue: #1565c0
+
+Light Blue Background: #e3f2fd
+
+White: #ffffff
+
+Light Grey: #f5f5f5
+
+Medium Grey: #9e9e9e
+
+Dark Grey: #424242
+
+Typography
+
+Font Family: "Inter", "Roboto", sans-serif
+
+Headings: Bold, consistent with sizing
+
+Body Text: Normal weight, consistent with sizing
+
+Buttons
+
+Primary: Background #1976d2, text white, border-radius 4px
+
+Hover: Background #1565c0
+
+Input Fields
+
+Maintain border radius and padding
+
+Match color and font with UI style
+
+Layout & Element Rules
+Do not change or reposition the logo section or page header.
+
+Keep the left navigation panel untouched.
+
+Maintain spacing, alignment, and form flow as per current layout.
+
+Remove or hide unnecessary boxes or empty placeholders.
+
+If a box is invisible due to matching background, keep it invisible or remove it (do not make it visible with colors).
+
+Consistency Requirements
+Apply the blue theme only to this page’s relevant interactive or content-focused elements (buttons, tabs, form fields, section headers).
+
+Preserve the page’s functional visual hierarchy.
+
+Avoid adding extra borders, heavy shadows, or over-styling intentionally minimal areas.

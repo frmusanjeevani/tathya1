@@ -1,0 +1,74 @@
+Cautiously follow the instructions and avoid using your own additions.
+Since there are multiple changes to be done, this is the first step to be followed.
+
+We are updating the Project Tathya Case Entry module to include a new Case Type selector and a dynamic Case Details section. This enhancement should:
+
+Display Case Type as a multi-select drop-down with the following values:
+
+Fraud Suspect
+
+Customer Complaint
+
+Internal Escalation
+
+Legal Referral
+
+Credential Misuse
+
+Branch Escalation
+
+Third-Party Alert
+
+Social Media Flag
+
+Call Center Escalation
+
+Audit Observation
+
+EWS – Early Warning Signal
+
+Other (Specify)
+
+Add a Case Details section that is dynamically displayed based on the selected Case Type.
+
+Each Case Type should trigger its corresponding Case Details fields as per the mapping below:
+
+Case Type → Case Details Fields:
+
+Fraud Suspect → Suspected Fraud Modus Operandi, Source of Suspicion, Initial Loss Estimate
+
+Customer Complaint → Complaint Nature, Customer Statement Summary, Date of Incident
+
+Internal Escalation → Escalation Source, Escalation Reason, Related Department
+
+Legal Referral → Law Enforcement Agency, FIR/Case Number, Date of Referral
+
+Credential Misuse → Type of Credentials Misused, Method of Compromise, Date Detected
+
+Branch Escalation → Branch Name/Code, Escalation Trigger, Responsible Officer
+
+Third-Party Alert → Source Entity, Alert Type, Date of Alert
+
+Social Media Flag → Platform, Post/Content Link, Date Posted
+
+Call Center Escalation → Call ID/Reference, Escalation Reason, Date of Call
+
+Audit Observation → Audit Type, Observation Summary, Audit Date
+
+EWS – Early Warning Signal → Signal Type, Trigger Source, Observation Date
+
+Other (Specify) → Description, Source, Date Noted
+
+Requirements:
+
+Field labels and data types must match the above exactly.
+
+Case Details section should appear immediately upon Case Type selection without page reload.
+
+Ensure database schema is updated to store these new fields, with nulls allowed for non-applicable fields.
+
+Ensure all API endpoints that handle Case Entry are updated to handle the new Case Type and Case Details fields.
+
+Update reporting and search filters to allow filtering by both Case Type and Case Details fields.
+
+Changes must be tested end-to-end for data integrity, UI behaviour, and API functionality.

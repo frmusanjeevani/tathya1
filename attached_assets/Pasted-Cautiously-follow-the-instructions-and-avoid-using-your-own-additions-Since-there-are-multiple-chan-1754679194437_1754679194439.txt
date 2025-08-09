@@ -1,0 +1,52 @@
+Cautiously follow the instructions and avoid using your own additions.
+Since there are multiple changes to be done, this is the first step to be followed.
+
+We are updating the Project Tathya workflow after feedback from the investigation team.
+A prototype was created and presented; based on discussions, changes in workflow and field structures are required. The nomenclature of modules must be smart and professional. Update the current codebase according to the following mapping and functional notes.
+
+Old Module → New Module & Notes
+
+New case Registration → Case Entry (Update all references in UI, backend, DB, and APIs)
+
+Case Allocation → Case Assignment (Update everywhere)
+
+Agency Workflow → Agency Investigation (Fields remain unchanged for now)
+
+Regional Investigation → Field Investigation (Fields remain unchanged for now)
+
+Primary Review Center → Investigation Assessment (Update name in all references)
+
+Approval Authority 1 → Level 1 Approval (Update everywhere)
+
+Approval Authority 2 → Level 2 Approval (Update everywhere)
+
+Final Review Authority → Final Adjudication (Add categorization logic: Fraud / Non-Fraud / Other Incident)
+
+Legal Compliance Center → Legal Compliance Center (No name change; ensure Fraud cases flow here and integrate SCN Module)
+
+(New) → Regulatory Reporting (For Fraud cases only; create RBI report fields for FMR1 compliance)
+
+Case resolution center → Case Closure (Update everywhere)
+
+(New) → Stakeholder Actioner (Create new module with task/action orchestration features)
+
+Requirements:
+
+Apply name changes across UI labels, database schema, backend services, API responses, and documentation.
+
+Implement new categorization logic in Final Adjudication and update workflow branching accordingly.
+
+Route Fraud cases from Final Adjudication to Legal Compliance Center and then to Regulatory Reporting.
+
+Create RBI reporting fields in Regulatory Reporting module, compliant with FMR1 format.
+
+Integrate SCN Module in Legal Compliance Center for Fraud cases.
+
+Add Stakeholder Actioner module to trigger and track tasks for internal/external stakeholders.
+
+Ensure all changes are backward-compatible where possible and migration scripts handle old data mapping.
+
+Conduct full end-to-end testing for workflow, permissions, and data integrity.
+
+Provide a detailed change log and updated workflow diagram.
+
