@@ -19,10 +19,10 @@ import pages.agency_workflow as agency_workflow
 import pages.smart_verification_suite as smart_verification_suite
 
 import pages.login_page as login_page
-# import pages.tathya_verification_lab as tathya_verification_lab
+import pages.tathya_verification_lab as tathya_verification_lab
 import pages.regulatory_governance_suite as regulatory_governance_suite
 import pages.fraud_risk_parameters as fraud_risk_parameters
-# import pages.advanced_risk_assessment as advanced_risk_assessment
+import pages.advanced_risk_assessment as advanced_risk_assessment
 
 # Initialize database
 init_database()
